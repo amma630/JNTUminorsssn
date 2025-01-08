@@ -77,31 +77,40 @@ while True:
                 if 10 < x1 < 108:
                     header = header_images[8]
                     drawColor = (0, 255,0) # lightgreen
+                    cv2.putText(header, "Light Green", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
                 elif 149 < x1 < 234:
                     header = header_images[7]
-                    drawColor = (0, 255, 255) # yellow   
+                    drawColor = (0, 255, 255) # yellow
+                    cv2.putText(header, "Yellow", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)   
                     
                 elif 278 < x1 < 364:
                     header = header_images[6]
                     drawColor = (173, 216, 230)  # Cream
+                    cv2.putText(header, "Cream", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
                 elif 408 < x1 < 490:
                     header = header_images[5]
                     drawColor = (34, 139, 34)  # Dark Green
+                    cv2.putText(header, "Dark Green", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
                 elif 535 < x1 < 618:
                     header = header_images[4]
                     drawColor = (160, 32, 240)  # Pink
+                    cv2.putText(header, "Pink", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
                 elif 662 < x1 < 748:
                     header = header_images[3]
                     drawColor = (128, 0, 128)  # Purple
+                    cv2.putText(header, "Purple", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
                 elif 784 < x1 < 866:
                     header = header_images[2]
                     drawColor = (255, 100, 1)  # Blue
+                    cv2.putText(header, "Blue", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
                 elif 898 < x1 < 983:
                     header = header_images[1]
                     drawColor = (0, 165, 255) # orange
+                    cv2.putText(header, "Orange", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
                 elif 1030 < x1 < 1104:
                     header = header_images[0]
                     drawColor = (0, 0, 255)  # Green
+                    cv2.putText(header, "Red", (100, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, drawColor, 2)
 
             # Right panel for actions
              # Right panel for actions
@@ -109,32 +118,40 @@ while True:
                 if 25 < y1 < 52:  # Undo
                     right_panel=right_panel_images[1]
                     brushThickness=10
+                    cv2.putText(right_panel, "pen10", (0, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 1), 2)
+                    
                 elif 85 < y1 < 117:
                     right_panel=right_panel_images[2]
-                    brushThickness=15  
+                    brushThickness=15
+                    cv2.putText(right_panel, "pen15", (0, 120), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 1), 2)  
                 elif 148 < y1 < 194: 
                     right_panel=right_panel_images[3]
                     brushThickness=20
+                    cv2.putText(right_panel, "pen20", (0, 200), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 1), 2)
                 elif 234 < y1 < 292:  # undo
                     right_panel = right_panel_images[4]
                     if len(undoStack) > 0:
                         redoStack.append(imgCanvas.copy())  # Save current state for redo
                         imgCanvas = undoStack.pop()  # Pop the last state for undo
                         print("Undo Action")
+                        cv2.putText(right_panel, "Undo", (0, 300), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 1), 2)
                 
                 elif 336 < y1 < 385:  # Redo
                     right_panel = right_panel_images[5]
                     if len(redoStack) > 0:
                         undoStack.append(imgCanvas.copy())  # Save current state for undo
                         imgCanvas = redoStack.pop()  # Pop the redo state
-                        print("Redo Action")    
+                        print("Redo Action")
+                        cv2.putText(right_panel, "Redo", (0, 400), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 1), 2)  
                 elif 415 < y1 < 490:
                     right_panel = right_panel_images[6]
                     drawColor = (0, 0, 0)  # Eraser
+                    cv2.putText(right_panel, "Eraser", (0, 500), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 1), 2)
                 elif 500 < y1 < 600:  # Clear
                     right_panel = right_panel_images[7]
                     imgCanvas = np.zeros((720, 1280, 3), np.uint8)  # Clear the canvas
                     print("Clear Screen Action")
+                    cv2.putText(right_panel, "Clear", (0, 520), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 100, 1), 2)
                     
             cv2.rectangle(img, (x1, y1 - 25), (x2, y2 + 25), drawColor, cv2.FILLED)
         # Drawing Mode: Only index finger up
